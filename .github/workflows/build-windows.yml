@@ -1,0 +1,25 @@
+name: Build Windows
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'melody-quiz-windows/**'
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install deps
+        working-directory: melody-quiz-windows
+        run: npm install
+      - name: Build
+        working-directory: melody-quiz-windows
+        run: npm run build
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: melody-quiz-windows
+          path: melody-quiz-windows/dist/*.exe
