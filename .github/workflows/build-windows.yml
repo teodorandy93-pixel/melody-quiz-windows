@@ -13,13 +13,11 @@ jobs:
         with:
           node-version: 20
       - name: Install deps
-        working-directory: melody-quiz-windows
         run: npm install
       - name: Build
-        working-directory: melody-quiz-windows
         run: npm run build
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: melody-quiz-windows
-          path: melody-quiz-windows/dist/*.exe
+          path: dist/*.exe
